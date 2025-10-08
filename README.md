@@ -9,8 +9,24 @@ A 3D avatar-powered English interview practice application with real-time speech
 - **AI-Powered Analysis**: Grammar, pronunciation, semantic, and fluency scoring
 - **Text-to-Speech**: Natural voice synthesis with viseme generation for lip-sync
 - **Interactive Interview**: Mock interview sessions with adaptive feedback
-- **User Authentication**: JWT-based login/signup system
-- **Progress Tracking**: Session-based scoring and improvement analytics stored in MongoDB
+- **User Authentication**: Secure login/signup system
+- **Progress Tracking**: Session-based scoring and improvement analytics
+
+## Demo 
+Homepage
+![Home page](screenshot1.png)
+Onboarding
+![Home page](screenshot2.png)
+Avatar
+![Home page](screenshot3.png)
+
+## Video Demo
+## Avatar with lip-sync
+Click on the image to see video
+[![Lip-Sync](screenshot3.png)](https://vimeo.com/1123628327)
+
+## Final Scores
+![Home page](final-scores.png)
 
 ## Tech Stack
 
@@ -65,7 +81,6 @@ Create `backend/.env` file:
 GOOGLE_API_KEY=your_google_ai_api_key
 MONGODB_URI=mongodb://localhost:27017
 MONGODB_DB=avatar_assistant
-JWT_SECRET_KEY=change_this_in_production
 WHISPER_MODEL=base
 WHISPER_COMPUTE_TYPE=auto
 HEYGEN_API_KEY=your_heygen_api_key
@@ -145,27 +160,13 @@ avatar-assistant/
 - `POST /api/auth/login` - User login
 - `GET /api/auth/me` - Get user profile
 
-All protected endpoints require the Authorization header:
-
-```http
-Authorization: Bearer <jwt_token>
-```
-
 ### Interview Sessions
 - `POST /api/session/start` - Start interview session
 - `POST /api/session/end` - End session with scores
-- `GET /api/session/history` - List sessions for the current user
-- `GET /api/session/<session_id>` - Get session details and attempts
 
 ### Analysis
 - `POST /api/check` - Analyze user response
 - `POST /api/tts` - Generate speech with visemes
-
-Notes:
-- `/api/check`, `/api/session/*`, and `/api/onboarding` endpoints require a valid JWT in the `Authorization` header.
-- `/api/tts` is public by default for flexibility.
-
-See `SETUP_JWT_AUTH.md` for end-to-end JWT setup and testing instructions.
 
 ### User Management
 - `GET /api/onboarding` - Get user preferences
@@ -253,22 +254,3 @@ The application includes comprehensive logging:
 - Backend: Use Postman or curl for API testing
 - Frontend: Browser console shows detailed logs
 - Integration: Test full interview flow
-
-## License
-
-This project is licensed under the MIT License.
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make changes with proper testing
-4. Submit a pull request
-
-## Support
-
-For issues and questions:
-1. Check the troubleshooting section
-2. Review console logs for errors
-3. Ensure all dependencies are installed
-4. Verify environment configuration
